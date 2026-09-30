@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OYNA — Oyun tap</title>
+<meta name="description" content="Bakıdakı oyunları, meydançaları və oyunçuları kəşf et.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap&subset=latin-ext">
+<style>
+:root{--bg:#0a0a0a;--bg2:#141414;--bd:#262626;--tx:#fff;--mu:#8f8f8f;--ac:#c6ff2e;--ac-tx:#0a0a0a;--er:#ff5c5c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme=dark]){}
+*{box-sizing:border-box;margin:0}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 Inter,system-ui,sans-serif;min-height:100%;padding-bottom:70px}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.nav{max-width:1120px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:28px}
+.logo{font-weight:800;font-size:22px;letter-spacing:.04em}
+.logo b{color:var(--ac)}
+.links{display:none;gap:22px;color:var(--mu)}
+.links a.on,.links a:hover{color:var(--tx)}
+.sp{flex:1}.dk{display:none}@media(min-width:860px){.dk{display:flex}}.th{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:12px;border:0;border-bottom:1px solid var(--bd);background:none;cursor:pointer}.th.on{background:var(--bg2)}.bub{max-width:80%;padding:8px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--bd);margin:6px 0}.bub.me{margin-left:auto;background:var(--ac);color:var(--ac-tx);border-color:var(--ac)}.bub small{display:block;opacity:.6;font-size:11px}.sel{display:flex;gap:8px;flex-wrap:wrap}.sel select{width:auto;min-width:150px}
+.ib{background:none;border:0;padding:8px;border-radius:8px;cursor:pointer;color:var(--mu);display:flex}
+.ib:hover{color:var(--tx)}
+.lang{display:flex;gap:2px;font-size:12px}
+.lang button{background:none;border:0;color:var(--mu);padding:4px 6px;cursor:pointer;border-radius:6px}
+.lang .on{color:var(--tx);background:var(--bg2)}
+main{max-width:1120px;margin:auto;padding:24px 20px}
+.tabbar{position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--bd);display:flex;padding-bottom:env(safe-area-inset-bottom,0px);z-index:20}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 0;font-size:11px;color:var(--mu);min-height:54px}
+.tabbar a.on{color:var(--ac)}
+.fab{position:fixed;right:16px;bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:19;background:var(--ac);color:var(--ac-tx);border-radius:30px;padding:12px 18px;display:flex;gap:6px;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:10px;border:1px solid var(--bd);background:var(--bg2);cursor:pointer;font-weight:600;transition:transform .15s,background .15s}
+.btn:hover{background:#1e1e1e}.btn:active{transform:scale(.97)}
+.btn.p{background:var(--ac);color:var(--ac-tx);border-color:var(--ac)}.btn.p:hover{background:#d6ff5e}
+.btn.sm{min-height:36px;padding:0 14px;font-size:14px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+h1{font-size:clamp(36px,8vw,76px);line-height:1;font-weight:800;letter-spacing:-.03em}
+h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+h3{font-size:17px}
+.mu{color:var(--mu)}
+.hero{padding:36px 0 20px;max-width:760px}
+.hero p{margin:18px 0 24px;color:var(--mu);font-size:17px;max-width:540px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.sec{margin-top:44px}
+.sec>.row{justify-content:space-between;margin-bottom:14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:16px;transition:border-color .15s}
+.card:hover{border-color:#3d3d3d}
+.gc{display:flex;gap:16px}
+.time{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;min-width:76px}
+.time small{display:block;font-size:12px;font-weight:500;color:var(--mu);letter-spacing:0;margin-top:6px}
+.gc .b{flex:1;display:flex;flex-direction:column;gap:6px}
+.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--mu);font-size:13px}
+.meta span{display:flex;gap:4px;align-items:center}
+.meta svg{width:15px;height:15px}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:20px;border:1px solid var(--bd);color:var(--mu)}
+.tag.a{border-color:var(--ac);color:var(--ac)}
+.bar{height:4px;border-radius:4px;background:var(--bd);overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin:14px 0}
+.chip{white-space:nowrap;padding:8px 14px;border-radius:30px;border:1px solid var(--bd);background:none;cursor:pointer;color:var(--mu)}
+.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.av{width:40px;height:40px;border-radius:50%;background:#222;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;flex:none}
+.av.x{background:none;border-style:dashed;color:var(--mu)}
+.av.f{background:var(--ac);color:var(--ac-tx);border-color:var(--ac)}
+.slots{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.two{display:grid;gap:20px}
+.map{position:relative;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;overflow:hidden;aspect-ratio:4/3}
+.map svg.bg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;transform:translate(-50%,-100%);background:none;border:0;cursor:pointer;color:var(--ac);transition:transform .15s}
+.pin:hover,.pin.on{transform:translate(-50%,-100%) scale(1.25)}
+.pin svg{width:30px;height:30px;fill:var(--ac);stroke:var(--bg);stroke-width:1.5}
+.prev{position:absolute;left:12px;right:12px;bottom:12px;background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:12px}
+label{display:block;font-size:13px;color:var(--mu);margin:14px 0 6px}
+input,select,textarea{width:100%;min-height:44px;background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:0 12px}
+textarea{padding:10px 12px;min-height:80px}
+.steps{display:flex;gap:6px;margin-bottom:20px}.steps i{flex:1;height:3px;border-radius:3px;background:var(--bd)}.steps i.on{background:var(--ac)}
+.opt{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.opt button{min-height:52px;border-radius:10px;border:1px solid var(--bd);background:var(--bg2);cursor:pointer}
+.opt button.on{border-color:var(--ac);color:var(--ac)}
+.br{display:flex;gap:28px;overflow-x:auto;padding:8px 0}
+.br>div{display:flex;flex-direction:column;justify-content:space-around;gap:14px;min-width:200px}
+.br small{color:var(--mu)}
+.m{border:1px solid var(--bd);border-radius:10px;background:var(--bg2)}
+.m div{display:flex;justify-content:space-between;padding:9px 12px}
+.m div+div{border-top:1px solid var(--bd)}
+.m .w{color:var(--ac);font-weight:600}
+.empty{text-align:center;padding:48px 20px;border:1px dashed var(--bd);border-radius:14px;color:var(--mu)}
+.empty svg{width:40px;height:40px;margin-bottom:10px}.empty p{margin-bottom:16px}
+#toast{position:fixed;left:50%;bottom:130px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:11px 18px;border-radius:10px;font-weight:600;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
+#toast.on{opacity:1}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.stat div{text-align:center;padding:12px 4px;border:1px solid var(--bd);border-radius:12px}.stat b{display:block;font-size:22px}
+.stat span{font-size:12px;color:var(--mu)}
+footer{margin-top:70px;padding:50px 0 10px;border-top:1px solid var(--bd)}
+@media(min-width:860px){.links{display:flex}.tabbar{display:none}body{padding-bottom:0}.fab{bottom:24px}.two{grid-template-columns:3fr 2fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="nav"><a href="#/" class="logo" aria-label="OYNA">OYN<b>A</b></a><nav class="links" id="links" aria-label="Əsas"></nav><div class="sp"></div>
+<div class="lang" id="lang"></div>
+<a class="ib" href="#/search" id="sb" aria-label="Axtarış"></a><a class="ib" href="#/messages" id="mb" aria-label="Mesajlar"></a><a class="ib" href="#/notifications" id="bell" aria-label="Bildirişlər"></a><a class="ib dk" href="#/profile" id="pf" aria-label="Profil"></a></div></header>
+<main id="app"></main>
+<a class="fab" href="#/create" id="fab"></a>
+<nav class="tabbar" id="tabs" aria-label="Mobil"></nav>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const P={search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',map:'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',plus:'<path d="M12 5v14M5 12h14"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.500-6s6.500 2.400 6.500 6M16 4.500a3.500 3.500 0 0 1 0 7M18 14c2.200.700 3.500 2.700 3.500 6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',pin:'<path d="M12 21s7-6.200 7-11.500A7 7 0 0 0 5 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/>',heart:'<path d="M12 20s-8-4.800-8-10.500A4.500 4.500 0 0 1 12 7a4.500 4.500 0 0 1 8 2.500C20 15.200 12 20 12 20z"/>',bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.500-7 8-7s8 3 8 7"/>',trophy:'<path d="M8 4h8v6a4 4 0 0 1-8 0zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 14v4M8 21h8M10 18h4"/>',check:'<path d="M5 12.500l4.500 4.500L19 7.500"/>',share:'<circle cx="6" cy="12" r="2.500"/><circle cx="18" cy="6" r="2.500"/><circle cx="18" cy="18" r="2.500"/><path d="M8.300 10.800l7.400-3.600M8.300 13.200l7.400 3.600"/>',msg:'<path d="M4 5h16v11H9l-5 4z"/>',ball:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+const T={nav:['Kəşf et','Oyunlar','Oyunçular','İcmalar','Turnirlər'],tabs:['Ana səhifə','Kəşf et','Oyunlar','İcmalar','Profil']};
+const LV=['İstənilən səviyyə','Başlanğıc','Orta','Təcrübəli'];
+const SP=['Basketbol','Futbol','Voleybol','Tennis','Padel','Badminton','Stolüstü tennis','Qaçış'];
+const V=[
+{id:1,n:'Gənclik Basketbol Meydançası',d:'Nəsimi',f:1,p:0,in:0,r:4.6,rc:128,x:44,y:42,s:[0],h:'07:00 – 23:00',a:'Gənclik metrosu yaxınlığı',fc:['İşıqlandırma','Su','Tualet']},
+{id:2,n:'Nərimanov Sport Mərkəzi',d:'Nərimanov',f:0,p:12,in:1,r:4.5,rc:96,x:58,y:36,s:[0,2,5],h:'08:00 – 24:00',a:'Nərimanov rayonu',fc:['Duş','Soyunma otağı','Dayanacaq','İşıqlandırma']},
+{id:3,n:'Bulvar Açıq Meydança',d:'Səbail',f:1,p:0,in:0,r:4.3,rc:74,x:40,y:72,s:[1,7],h:'Gündəlik',a:'Dənizkənarı Milli Park',fc:['Su','Tualet']},
+{id:4,n:'Yasamal Mini-Futbol Arena',d:'Yasamal',f:0,p:40,in:1,r:4.7,rc:151,x:24,y:46,s:[1],h:'09:00 – 01:00',a:'Yasamal rayonu',fc:['Duş','Dayanacaq','Avadanlıq icarəsi','İşıqlandırma']},
+{id:5,n:'Xətai Padel Klub',d:'Xətai',f:0,p:30,in:1,r:4.8,rc:63,x:66,y:58,s:[3,4],h:'08:00 – 23:00',a:'Xətai rayonu',fc:['Soyunma otağı','Avadanlıq icarəsi','Dayanacaq']},
+{id:6,n:'Nizami Voleybol Zalı',d:'Nizami',f:0,p:8,in:1,r:4.2,rc:41,x:54,y:52,s:[2,5],h:'10:00 – 22:00',a:'Nizami rayonu',fc:['Duş','Su','Tualet']},
+{id:7,n:'Binəqədi Kalistenika Parkı',d:'Binəqədi',f:1,p:0,in:0,r:4.4,rc:52,x:30,y:16,s:[7],h:'Gündəlik',a:'Binəqədi rayonu',fc:['İşıqlandırma','Su']},
+{id:8,n:'Suraxanı Tennis Kortları',d:'Suraxanı',f:0,p:15,in:0,r:4.1,rc:38,x:82,y:26,s:[3,4],h:'08:00 – 21:00',a:'Suraxanı rayonu',fc:['Dayanacaq','Soyunma otağı']}];
+const G=[
+{id:1,s:0,t:'Basketbol 3x3',v:1,day:0,tm:'20:00',l:2,m:9,n:6,pr:3,h:'Elvin M.'},
+{id:2,s:1,t:'Mini-futbol 5x5',v:4,day:0,tm:'21:00',l:2,m:10,n:8,pr:5,h:'Rəşad A.'},
+{id:3,s:4,t:'Padel cütlük oyunu',v:5,day:0,tm:'19:00',l:1,m:4,n:2,pr:8,h:'Leyla H.'},
+{id:4,s:2,t:'Voleybol axşamı',v:6,day:0,tm:'18:30',l:0,m:12,n:7,pr:2,h:'Nigar S.'},
+{id:5,s:0,t:'Basketbol 5x5',v:2,day:1,tm:'20:00',l:3,m:10,n:9,pr:4,h:'Tural Q.'},
+{id:6,s:7,t:'Səhər qaçışı, 5 km',v:3,day:1,tm:'07:00',l:0,m:15,n:5,pr:0,h:'Aysel R.'},
+{id:7,s:3,t:'Tennis cütlük',v:8,day:1,tm:'17:00',l:2,m:4,n:3,pr:7,h:'Kamran B.'},
+{id:8,s:1,t:'Bulvarda futbol',v:3,day:0,tm:'22:00',l:0,m:14,n:10,pr:0,h:'Orxan V.'}];
+const PL=[['Cavid Qədirli','cavid',0,2,48,96,'Nəsimi'],['Leyla Hüseynova','leyla',4,1,31,99,'Xətai'],['Rəşad Əliyev','resad',1,3,77,92,'Yasamal'],['Nigar Səfərova','nigar',2,2,54,97,'Nizami'],['Tural Qasımov','tural',0,3,102,94,'Nərimanov'],['Aysel Rəhimova','aysel',7,1,26,100,'Səbail']];
+const CM=[['Bakı Basketbol İcması','baku-basketbol',0,1240,'Hər həftə Gənclik və Nərimanov meydançalarında açıq oyunlar.'],['Bakı Qaçış Klubu','baku-qacis',7,860,'Bazar günləri səhər qaçışları, bulvar marşrutları.'],['Padel Bakı','padel-baku',4,420,'Yeni başlayanlar üçün cütlük oyunları və təlimlər.'],['Bakı Voleybol Dostları','voleybol',2,530,'Hər cümə axşamı açıq voleybol.']];
+const TR=[['Bakı Yay Kuboku 3x3',0,'12 Oktyabr','Nərimanov Sport Mərkəzi',16,'20 AZN','Qeydiyyat açıqdır'],['Şəhərlərarası Mini-Futbol',1,'26 Oktyabr','Yasamal Mini-Futbol Arena',12,'50 AZN','Tezliklə başlayır'],['Padel Açıq Turnir',4,'3 Noyabr','Xətai Padel Klub',8,'30 AZN','Qeydiyyat açıqdır']];
+const $=s=>document.querySelector(s);
+let st={j:[],f:[],g:[],lang:'AZ'};try{Object.assign(st,JSON.parse(localStorage.oyna||'{}'))}catch(e){}
+const save=()=>{try{localStorage.oyna=JSON.stringify(st)}catch(e){}};
+let F={s:-1,tab:0,l:-1,fr:0,th:''},W={step:0,s:0,day:0,tm:'20:00',v:1,l:2,m:10,pr:0,t:'',ds:''};
+const all=()=>[...G,...st.g];
+const cnt=g=>g.n+(st.j.includes(g.id)?1:0);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2400)};
+const ini=n=>n.split(' ').map(x=>x[0]).join('').slice(0,2);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const vn=id=>V.find(v=>v.id==id);
+const dn=d=>d?'Sabah':'Bu gün';
+const price=p=>p?p+' AZN':'Pulsuz';
+function gcard(g){const v=vn(g.v),c=cnt(g),full=c>=g.m,j=st.j.includes(g.id);
+return `<article class="card gc"><div class="time">${g.tm}<small>${dn(g.day)}</small></div><div class="b"><a href="#/games/${g.id}"><h3>${esc(g.t)}</h3></a><div class="meta"><span>${ic('pin')}${esc(v.n.split(' ')[0])}, ${v.d}</span><span>${ic('users')}${c}/${g.m} oyunçu</span></div><div class="row" style="gap:6px"><span class="tag a">${SP[g.s]}</span><span class="tag">${LV[g.l]}</span><span class="tag">${price(g.pr)}</span></div><div class="bar" aria-hidden="true"><i style="width:${c/g.m*100}%"></i></div><div><button class="btn sm ${j?'':'p'}" data-a="join" data-id="${g.id}" ${full&&!j?'disabled':''}>${j?'Oyundan çıx':full?'Oyun doludur':'Oyuna qoşul'}</button></div></div></article>`}
+function vcard(v){return `<a class="card" href="#/venue/${v.id}" style="display:block"><div class="row" style="justify-content:space-between"><span class="tag ${v.f?'a':''}">${v.f?'Pulsuz':'Ödənişli'}</span><button class="ib" data-a="fav" data-id="${v.id}" aria-label="Sevimlilərə əlavə et" style="${st.f.includes(v.id)?'color:var(--ac)':''}">${ic('heart')}</button></div><h3 style="margin-top:14px">${esc(v.n)}</h3><div class="meta" style="margin-top:6px"><span>${ic('pin')}${v.d}</span><span>${v.in?'Qapalı':'Açıq'}</span><span>${v.r} (${v.rc})</span></div><div class="mu" style="margin-top:10px;font-size:13px">${v.s.map(i=>SP[i]).join(', ')} · ${v.f?'Pulsuz':v.p+' AZN-dən'}</div></a>`}
+const empty=(t,b,h)=>`<div class="empty">${ic('ball')}<p>${t}</p>${b?`<a class="btn p" href="${h}">${b}</a>`:''}</div>`;
+function chips(){return `<div class="chips" role="group" aria-label="İdman növü"><button class="chip ${F.s<0?'on':''}" data-a="sp" data-id="-1">Hamısı</button>${SP.map((s,i)=>`<button class="chip ${F.s==i?'on':''}" data-a="sp" data-id="${i}">${s}</button>`).join('')}</div>`}
+function mapEl(list,sel){return `<div class="map" role="img" aria-label="Bakı xəritəsi"><svg class="bg" viewBox="0 0 100 75" preserveAspectRatio="none"><path d="M0 62 Q25 52 45 70 T100 60 V75 H0Z" fill="#0f1a1f"/><g stroke="#222" fill="none" stroke-width=".4"><path d="M0 30 Q40 20 100 35M20 0 Q30 40 15 75M60 0 Q55 40 75 75M0 50 Q50 45 100 50"/></g></svg>${list.map(v=>`<button class="pin ${sel==v.id?'on':''}" style="left:${v.x}%;top:${v.y*0.9+4}%" data-a="pin" data-id="${v.id}" aria-label="${esc(v.n)}"><svg viewBox="0 0 24 24"><path d="M12 22s8-6.500 8-12a8 8 0 0 0-16 0c0 5.500 8 12 8 12z"/><circle cx="12" cy="10" r="2.800" fill="#0a0a0a"/></svg></button>`).join('')}${sel?(()=>{const v=vn(sel);return `<div class="prev"><div class="row" style="justify-content:space-between"><b>${esc(v.n)}</b><span class="tag ${v.f?'a':''}">${v.f?'Pulsuz':v.p+' AZN'}</span></div><div class="meta">${v.d} · ${v.r} · ${v.h}</div><a class="btn sm p" style="margin-top:8px" href="#/venue/${v.id}">Məkana bax</a></div>`})():''}</div>`}
+let pinSel=0;
+const R={
+home(){const tg=all().filter(g=>!g.day);return `<section class="hero"><h1>Bu gün hansı oyunu oynayırsan?</h1><p>Bakıdakı oyunları, meydançaları və oyunçuları kəşf et. Öz oyununu yarat və sənə qoşulacaq insanları tap.</p><div class="row"><a class="btn p" href="#/games">Oyun tap</a><a class="btn" href="#/explore">Meydança tap</a></div></section>
+<section class="sec"><div class="row"><h2>Bu gün keçirilən oyunlar</h2><a class="mu" href="#/games">Hamısı</a></div><div class="grid">${tg.slice(0,4).map(gcard).join('')}</div></section>
+<section class="sec"><div class="row"><h2>Sizə yaxın meydançalar</h2><a class="mu" href="#/explore">Xəritə</a></div><div class="grid">${V.slice(0,3).map(vcard).join('')}</div></section>
+<section class="sec"><div class="row"><h2>Yaxınlaşan turnirlər</h2><a class="mu" href="#/tournaments">Hamısı</a></div><div class="grid">${TR.slice(0,2).map(tcard).join('')}</div></section>
+<section class="sec"><h2 style="margin-bottom:14px">Bakıdakı icmaları kəşf et</h2><div class="grid">${CM.map(ccard).join('')}</div></section>
+<footer><h1 style="font-size:clamp(32px,7vw,64px)">Oyunun başlayır.</h1><div class="row" style="margin-top:20px"><a class="btn p" href="#/create">Oyun yarat</a></div><p class="mu" style="margin-top:30px;font-size:13px">OYNA — Find your game. Play. Meet. Compete. Nümunə məlumatlar.</p></footer>`},
+games(){let l=all();if(F.s>=0)l=l.filter(g=>g.s==F.s);if(F.l>=0)l=l.filter(g=>g.l==F.l);if(F.fr)l=l.filter(g=>F.fr==1?!g.pr:g.pr>0);if(F.tab==1)l=l.filter(g=>!g.day);if(F.tab==2)l=l.filter(g=>g.day);if(F.tab==3)l=l.filter(g=>vn(g.v).d=='Nəsimi'||vn(g.v).d=='Nərimanov'||vn(g.v).d=='Səbail');
+l.sort((a,b)=>a.day-b.day||a.tm.localeCompare(b.tm));
+return `<div class="row" style="justify-content:space-between"><h1 style="font-size:40px">Oyunlar</h1><a class="btn p" href="#/create">${ic('plus')}Oyun yarat</a></div><div class="chips" role="tablist">${['Bütün oyunlar','Bu gün','Sabah','Sizə yaxın'].map((t,i)=>`<button role="tab" class="chip ${F.tab==i?'on':''}" data-a="tab" data-id="${i}">${t}</button>`).join('')}</div>${chips()}<div class="sel" style="margin-bottom:14px"><select data-f="l" aria-label="Səviyyə"><option value="-1">Səviyyə: hamısı</option>${LV.map((x,i)=>`<option value="${i}" ${F.l==i?'selected':''}>${x}</option>`).join('')}</select><select data-f="fr" aria-label="Qiymət"><option value="0">Qiymət: hamısı</option><option value="1" ${F.fr==1?'selected':''}>Pulsuz</option><option value="2" ${F.fr==2?'selected':''}>Ödənişli</option></select></div><div class="grid">${l.map(gcard).join('')||''}</div>${l.length?'':empty('Bu filterlərə uyğun oyun yoxdur.','Yeni oyun yarat','#/create')}`},
+game(id){const g=all().find(x=>x.id==id);if(!g)return empty('Oyun tapılmadı.','Oyunlara qayıt','#/games');const v=vn(g.v),c=cnt(g),j=st.j.includes(g.id);
+const sl=Array.from({length:g.m},(_,i)=>i<c?`<div class="av f" title="Oyunçu">${i==0?ini(g.h):i==c-1&&j?'Sən':PL[i%6][1][0].toUpperCase()}</div>`:`<div class="av x" aria-label="Boş yer">${i+1}</div>`).join('');
+return `<a class="mu" href="#/games">Oyunlar</a><div class="two" style="margin-top:12px"><div><span class="tag a">${SP[g.s]}</span><h1 style="font-size:44px;margin:12px 0">${esc(g.t)}</h1><div class="meta" style="font-size:15px"><span>${ic('clock')}${dn(g.day)}, ${g.tm}</span><span>${ic('pin')}<a href="#/venue/${v.id}">${esc(v.n)}</a></span></div>
+<div class="stat"><div><b>${c}/${g.m}</b><span>Oyunçular</span></div><div><b style="font-size:16px;padding:4px 0">${LV[g.l].split(' ')[0]}</b><span>Səviyyə</span></div><div><b>${g.pr||'0'}</b><span>AZN</span></div><div><b style="font-size:16px;padding:4px 0">${g.h.split(' ')[0]}</b><span>Təşkilatçı</span></div></div>
+<h3>Oyunçular</h3><div class="slots">${sl}</div>
+<div class="row"><button class="btn p" data-a="join" data-id="${g.id}" ${c>=g.m&&!j?'disabled':''}>${j?'Oyundan çıx':c>=g.m?'Oyun doludur':'Oyuna qoşul'}</button><button class="btn" data-a="share">${ic('share')}Paylaş</button><button class="btn" data-a="invite">Oyunçu dəvət et</button><button class="btn" data-a="report">Şikayət et</button></div>
+${j?`<div class="card" style="margin-top:20px"><h3>Oyun söhbəti</h3><p class="mu" style="margin-top:6px">${g.h}: Gəlirsiz? Top məndə olacaq.</p></div>`:''}</div>${mapEl([v],0)}</div>`},
+explore(){const l=V.filter(v=>F.s<0||v.s.includes(F.s));return `<h1 style="font-size:40px">Kəşf et</h1>${chips()}<div class="two"><div>${mapEl(l,pinSel)}</div><div class="grid" style="grid-template-columns:1fr">${l.map(vcard).join('')||empty('Bu idman növü üçün məkan yoxdur.')}</div></div>`},
+venue(id){const v=vn(id);if(!v)return empty('Məkan tapılmadı.');const gs=all().filter(g=>g.v==v.id&&!g.day);
+return `<a class="mu" href="#/explore">Kəşf et</a><div class="two" style="margin-top:12px"><div><div class="row"><span class="tag ${v.f?'a':''}">${v.f?'Pulsuz':'Ödənişli'}</span><span class="tag">${v.in?'Qapalı':'Açıq'}</span><span class="tag">${v.r} · ${v.rc} rəy</span></div><h1 style="font-size:42px;margin:12px 0">${esc(v.n)}</h1><div class="meta" style="font-size:15px"><span>${ic('pin')}${v.d}, ${v.a}</span><span>${ic('clock')}${v.h}</span><span>${v.f?'Pulsuz':v.p+' AZN-dən'}</span></div>
+<h2 style="margin:30px 0 12px">Bu məkanda bu gün</h2>${gs.length?`<div class="grid" style="grid-template-columns:1fr">${gs.map(gcard).join('')}</div>`:empty('Bu gün bu məkanda oyun yoxdur.','Oyun yarat','#/create')}
+<h2 style="margin:30px 0 12px">İmkanlar</h2><div class="row" style="gap:6px">${v.fc.map(f=>`<span class="tag">${f}</span>`).join('')}</div><h2 style="margin:30px 0 12px">İdman növləri</h2><div class="row" style="gap:6px">${v.s.map(i=>`<span class="tag a">${SP[i]}</span>`).join('')}</div></div>${mapEl([v],0)}</div>`},
+players(){return `<h1 style="font-size:40px">Oyunçular</h1>${chips()}<div class="grid">${PL.filter(p=>F.s<0||p[2]==F.s).map(p=>`<article class="card"><div class="row"><div class="av f">${ini(p[0])}</div><div><h3>${p[0]}</h3><span class="mu" style="font-size:13px">@${p[1]} · ${p[6]}</span></div></div><div class="meta" style="margin:12px 0"><span>${SP[p[2]]}</span><span>${LV[p[3]]}</span><span>${p[4]} oyun</span><span>Fair play ${p[5]}%</span></div><button class="btn sm" data-a="inv">Dəvət et</button></article>`).join('')||''}</div>`},
+communities(){return `<h1 style="font-size:40px;margin-bottom:16px">İcmalar</h1><div class="grid">${CM.map(ccard).join('')}</div>`},
+tournaments(){return `<h1 style="font-size:40px;margin-bottom:16px">Turnirlər</h1><div class="grid">${TR.map(tcard).join('')}</div>
+<section class="sec"><h2 style="margin-bottom:6px">${TR[0][0]}: final cədvəli</h2><p class="mu">Yarımfinal və final mərhələsi</p><div class="br" tabindex="0" aria-label="Turnir cədvəli"><div><small>Yarımfinal</small>${mt(['Gənclik Qartalları',21,1],['Nərimanov 3x3',17,0])}${mt(['Yasamal Blok',15,0],['Səbail Kings',19,1])}</div><div><small>Final</small>${mt(['Gənclik Qartalları',0,0],['Səbail Kings',0,0])}</div></div><button class="btn p" data-a="reg">Turnirdə iştirak et</button></section>`},
+create(){const w=W,sts=['İdman növü','Vaxt','Məkan','Təfərrüat','Yoxla'];let b='';
+if(w.step==0)b=`<div class="opt">${SP.map((s,i)=>`<button class="${w.s==i?'on':''}" data-a="w" data-k="s" data-id="${i}">${s}</button>`).join('')}</div>`;
+if(w.step==1)b=`<div class="opt">${['Bu gün','Sabah'].map((s,i)=>`<button class="${w.day==i?'on':''}" data-a="w" data-k="day" data-id="${i}">${s}</button>`).join('')}</div><label for="tm">Saat</label><input id="tm" type="time" value="${w.tm}">`;
+if(w.step==2)b=`<div class="opt">${V.map(v=>`<button class="${w.v==v.id?'on':''}" data-a="w" data-k="v" data-id="${v.id}">${esc(v.n)}</button>`).join('')}</div>`;
+if(w.step==3)b=`<label for="tt">Oyunun adı</label><input id="tt" maxlength="50" value="${esc(w.t)}" placeholder="Məs: Basketbol 3x3"><label>Səviyyə</label><div class="opt">${LV.map((s,i)=>`<button class="${w.l==i?'on':''}" data-a="w" data-k="l" data-id="${i}">${s}</button>`).join('')}</div><label for="mx">Maksimum oyunçu</label><input id="mx" type="number" min="2" max="30" value="${w.m}"><label for="pr">Qiymət (AZN, 0 = pulsuz)</label><input id="pr" type="number" min="0" value="${w.pr}"><label for="ds">Təsvir</label><textarea id="ds" maxlength="200">${esc(w.ds)}</textarea>`;
+if(w.step==4)b=`<div class="card"><h3>${esc(w.t||SP[w.s]+' oyunu')}</h3><div class="meta" style="margin-top:8px"><span>${SP[w.s]}</span><span>${dn(w.day)}, ${w.tm}</span><span>${vn(w.v).n}</span><span>${LV[w.l]}</span><span>${w.m} oyunçu</span><span>${price(w.pr)}</span></div></div>`;
+return `<div style="max-width:600px"><h1 style="font-size:36px;margin-bottom:16px">Oyun yarat</h1><div class="steps">${sts.map((_,i)=>`<i class="${i<=w.step?'on':''}"></i>`).join('')}</div><h2 style="margin-bottom:12px">${sts[w.step]}</h2>${b}<div class="row" style="margin-top:24px">${w.step?'<button class="btn" data-a="back">Geri</button>':''}<button class="btn p" data-a="next">${w.step==4?'Oyunu yarat':'Davam et'}</button></div></div>`},
+profile(){const my=all().filter(g=>st.j.includes(g.id));return `<div class="row"><div class="av f" style="width:72px;height:72px;font-size:22px">CM</div><div><h1 style="font-size:32px">Cavid Qədirli</h1><span class="mu">@cavid · Nəsimi</span></div></div><p class="mu" style="margin-top:12px">Basketbol və padel. Həftə içi axşamlar oynayıram.</p><div class="stat"><div><b>48</b><span>Oyun</span></div><div><b>27</b><span>Qələbə</span></div><div><b>56%</b><span>Qələbə faizi</span></div><div><b>96%</b><span>Fair play</span></div></div>
+<h2 style="margin:24px 0 12px">Qoşulduğum oyunlar</h2>${my.length?`<div class="grid">${my.map(gcard).join('')}</div>`:empty('Hələ heç bir oyuna qoşulmamısınız.','Oyun tap','#/games')}
+<h2 style="margin:30px 0 12px">Sevimli məkanlar</h2>${st.f.length?`<div class="grid">${st.f.map(i=>vcard(vn(i))).join('')}</div>`:empty('Sevimli məkan yoxdur.','Meydança tap','#/explore')}
+<h2 style="margin:30px 0 12px">Bildirişlər</h2><div class="card">Elvin M. sizi Basketbol 3x3 oyununa dəvət etdi.</div>`}};
+
+R.notifications=()=>{const n=[['Elvin M. sizi Basketbol 3x3 oyununa dəvət etdi.','#/games/1'],['Bu axşam 20:00: Basketbol 3x3 oyunu başlayır.','#/games/1'],['Leyla Hüseynova yeni mesaj göndərdi.','#/messages'],['Bakı Yay Kuboku 3x3 üçün qeydiyyat açıldı.','#/tournaments']];return `<h1 style="font-size:40px;margin-bottom:16px">Bildirişlər</h1><div class="grid" style="grid-template-columns:1fr">${n.map(x=>`<a class="card" href="${x[1]}">${x[0]}</a>`).join('')}</div>`};
+const seedM={d1:[['Leyla Hüseynova','Bu gün padel oynayırsan?']],d2:[['Tural Qasımov','Sabah basketbola gəlirsən?']]};
+const thr=()=>[...all().filter(g=>st.j.includes(g.id)).map(g=>({id:'g'+g.id,n:g.t+', '+vn(g.v).d+', '+g.tm,m:[[g.h,'Hamı hazırdır?']]})),{id:'d1',n:'Leyla Hüseynova',m:seedM.d1},{id:'d2',n:'Tural Qasımov',m:seedM.d2}];
+R.messages=()=>{const T2=thr(),c=T2.find(t=>t.id==F.th);const all2=t=>[...t.m.map(x=>({a:x[0],t:x[1]})),...((st.c||{})[t.id]||[])];
+return `<h1 style="font-size:40px;margin-bottom:16px">Mesajlar</h1><div class="two" style="grid-template-columns:${c?'1fr':'1fr'}"><div class="card" style="padding:0">${T2.map(t=>{const u=!(st.r||[]).includes(t.id);return `<button class="th ${c&&c.id==t.id?'on':''}" data-a="th" data-id="${t.id}"><span>${esc(t.n)}</span>${u?'<span class="tag a">1</span>':''}</button>`}).join('')}</div>${c?`<div class="card"><h3>${esc(c.n)}</h3><div style="margin:12px 0;min-height:140px">${all2(c).map(m=>`<div class="bub ${m.me?'me':''}"><small>${m.a||'Sən'}</small>${esc(m.t)}</div>`).join('')}</div><form id="mf" class="row" style="flex-wrap:nowrap"><input id="mi" maxlength="300" placeholder="Mesaj yaz" aria-label="Mesaj"><button class="btn p" aria-label="Göndər">${ic('share')}</button></form></div>`:empty('Söhbət seçin.')}</div>`};
+R.search=()=>`<h1 style="font-size:40px;margin-bottom:16px">Axtarış</h1><input id="q" type="search" placeholder="Məkan, oyun, oyunçu, icma, turnir" aria-label="Axtarış" autofocus><div id="res" style="margin-top:16px"></div>`;
+const find=q=>{q=q.toLowerCase().trim();if(!q)return '';const h=[];const L=(t,a)=>a.length&&h.push(`<h3 style="margin:18px 0 8px">${t}</h3><div class="grid">${a.join('')}</div>`);
+L('Məkanlar',V.filter(v=>(v.n+v.d).toLowerCase().includes(q)).map(vcard));L('Oyunlar',all().filter(g=>(g.t+SP[g.s]).toLowerCase().includes(q)).map(gcard));
+L('Oyunçular',PL.filter(p=>(p[0]+p[1]).toLowerCase().includes(q)).map(p=>`<a class="card" href="#/players">${p[0]} <span class="mu">@${p[1]}</span></a>`));
+L('İcmalar',CM.filter(c=>c[0].toLowerCase().includes(q)).map(ccard));L('Turnirlər',TR.filter(t=>t[0].toLowerCase().includes(q)).map(tcard));
+return h.join('')||empty('Nəticə tapılmadı.')};
+document.addEventListener('input',e=>{if(e.target.id=='q')$('#res').innerHTML=find(e.target.value)});
+document.addEventListener('change',e=>{const k=e.target.dataset.f;if(k){F[k]=+e.target.value;render()}});
+document.addEventListener('submit',e=>{if(e.target.id!='mf')return;e.preventDefault();const v=$('#mi').value.trim();if(!v)return;st.c=st.c||{};(st.c[F.th]=st.c[F.th]||[]).push({me:1,t:v});save();render();const i=$('#mi');i&&i.focus()});
+function ccard(c){return `<article class="card"><span class="tag a">${SP[c[2]]}</span><h3 style="margin:12px 0 6px">${c[0]}</h3><p class="mu" style="font-size:14px">${c[4]}</p><div class="row" style="margin-top:14px;justify-content:space-between"><span class="meta"><span>${ic('users')}${c[3]} üzv</span></span><button class="btn sm" data-a="comm">İcmaya qoşul</button></div></article>`}
+function tcard(t){return `<article class="card"><div class="row" style="justify-content:space-between"><span class="tag a">${t[6]}</span><span class="mu">${t[2]}</span></div><h3 style="margin:16px 0 6px">${t[0]}</h3><div class="meta"><span>${ic('trophy')}${SP[t[1]]}</span><span>${ic('pin')}${t[3]}</span><span>${ic('users')}${t[4]} komanda</span><span>Giriş ${t[5]}</span></div></article>`}
+function mt(a,b){return `<div class="m">${[a,b].map(x=>`<div class="${x[2]?'w':''}"><span>${x[0]}</span><b>${x[1]||'—'}</b></div>`).join('')}</div>`}
+function render(){const h=(location.hash||'#/').slice(2).split('/'),r=h[0]||'home';
+$('#app').innerHTML=r=='game'||r=='games'&&h[1]?R.game(h[1]):r=='venue'?R.venue(h[1]):(R[r]||R.home)();
+const cur={'':0,home:0,explore:1,venue:1,games:2,game:2,create:2,communities:3,profile:4}[r];
+document.querySelectorAll('#links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#/'+a.dataset.r));
+document.querySelectorAll('#tabs a').forEach((a,i)=>a.classList.toggle('on',i==cur));
+document.title='OYNA — '+({games:'Oyunlar',explore:'Kəşf et',players:'Oyunçular',communities:'İcmalar',tournaments:'Turnirlər',create:'Oyun yarat'}[r]||'Oyun tap');scrollTo(0,0)}
+function init(){const rs=['explore','games','players','communities','tournaments'];
+$('#links').innerHTML=rs.map((r,i)=>`<a href="#/${r}" data-r="${r}">${T.nav[i]}</a>`).join('');
+$('#tabs').innerHTML=[['home','','home'],['search','explore',''],['ball','games',''],['users','communities',''],['user','profile','']].map((t,i)=>`<a href="#/${t[1]}">${ic(t[0])}${T.tabs[i]}</a>`).join('');
+$('#fab').innerHTML=ic('plus')+'Oyun yarat';$('#bell').innerHTML=ic('bell');$('#sb').innerHTML=ic('search');$('#mb').innerHTML=ic('msg');$('#pf').innerHTML=ic('user');
+const L=()=>{$('#lang').innerHTML=['AZ','EN','RU'].map(l=>`<button class="${l=='AZ'?'on':''}" data-a="lang" data-id="${l}" aria-label="Dil ${l}">${l}</button>`).join('')};L()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=+b.dataset.id;
+if(a=='fav'){e.preventDefault();st.f=st.f.includes(id)?st.f.filter(x=>x!=id):[...st.f,id];save();render()}
+else if(a=='join'){const g=all().find(x=>x.id==id);if(st.j.includes(id)){st.j=st.j.filter(x=>x!=id);toast('Oyundan çıxdınız.')}else if(cnt(g)>=g.m)toast('Bu oyun artıq doludur.');else{st.j.push(id);toast('Oyuna qoşuldunuz.')}save();render()}
+else if(a=='sp'){F.s=id;render()}else if(a=='tab'){F.tab=id;render()}
+else if(a=='th'){F.th=b.dataset.id;st.r=[...(st.r||[]),F.th];save();render()}else if(a=='pin'){pinSel=id;render()}
+else if(a=='w'){W[b.dataset.k]=id;render()}
+else if(a=='back'){W.step--;render()}
+else if(a=='next'){if(W.step==1)W.tm=$('#tm').value||W.tm;if(W.step==3){W.t=$('#tt').value.trim();W.m=Math.max(2,+$('#mx').value||10);W.pr=Math.max(0,+$('#pr').value||0);W.ds=$('#ds').value}
+if(W.step<4){W.step++;render()}else{const g={id:100+st.g.length,s:W.s,t:W.t||SP[W.s]+' oyunu',v:W.v,day:W.day,tm:W.tm,l:W.l,m:W.m,n:1,pr:W.pr,h:'Cavid M.'};st.g.push(g);st.j.push(g.id);save();W={step:0,s:0,day:0,tm:'20:00',v:1,l:2,m:10,pr:0,t:'',ds:''};toast('Oyununuz yaradıldı.');location.hash='#/games/'+g.id}}
+else if(a=='share'){const u=location.href;navigator.share?navigator.share({title:'OYNA',url:u}).catch(()=>{}):(navigator.clipboard&&navigator.clipboard.writeText(u).catch(()=>{}),toast('Keçid kopyalandı.'))}
+else if(a=='invite'||a=='inv')toast('Dəvət göndərildi.');else if(a=='report')toast('Şikayət qəbul edildi.');
+else if(a=='reg')toast('Qeydiyyat sorğusu göndərildi.');else if(a=='comm')toast('İcmaya qoşuldunuz.');
+else if(a=='lang'&&b.dataset.id!='AZ')toast('Bu dil tezliklə əlavə olunacaq.')});
+addEventListener('hashchange',render);init();render();
+</script>
+</body>
+</html>
